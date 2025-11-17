@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-nav text-nav-foreground py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-nav text-nav-foreground py-12 relative overflow-hidden">
+      {/* Subtle glow effect */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <h3 className="text-2xl font-bold text-primary mb-4">moers</h3>
@@ -16,22 +18,22 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Links Rápidos</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/" className="text-nav-foreground/80 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block">
                   Início
                 </Link>
               </li>
               <li>
-                <Link to="/planos" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/planos" className="text-nav-foreground/80 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block">
                   Planos
                 </Link>
               </li>
               <li>
-                <Link to="/servicos" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/servicos" className="text-nav-foreground/80 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block">
                   Serviços
                 </Link>
               </li>
               <li>
-                <Link to="/contato" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/contato" className="text-nav-foreground/80 hover:text-primary transition-all duration-300 hover:translate-x-1 inline-block">
                   Contato
                 </Link>
               </li>
