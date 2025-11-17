@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-nav text-nav-foreground py-12">
@@ -14,24 +16,24 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Links Rápidos</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#inicio" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/" className="text-nav-foreground/80 hover:text-primary transition-colors">
                   Início
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#planos" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/planos" className="text-nav-foreground/80 hover:text-primary transition-colors">
                   Planos
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#servicos" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/servicos" className="text-nav-foreground/80 hover:text-primary transition-colors">
                   Serviços
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contato" className="text-nav-foreground/80 hover:text-primary transition-colors">
+                <Link to="/contato" className="text-nav-foreground/80 hover:text-primary transition-colors">
                   Contato
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
