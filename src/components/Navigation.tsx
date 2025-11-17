@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,19 +16,19 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
-    { href: "#inicio", label: "Início" },
-    { href: "#planos", label: "Planos" },
-    { href: "#servicos", label: "Serviços" },
-    { href: "#contato", label: "Contato" },
+    { to: "/", label: "Início" },
+    { to: "/planos", label: "Planos" },
+    { to: "/servicos", label: "Serviços" },
+    { to: "/contato", label: "Contato" },
   ];
 
-  const scrollToSection = (href: string) => {
-    setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const isActive = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -40,24 +42,26 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-nav-foreground hover:text-primary transition-colors font-medium"
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`text-nav-foreground hover:text-primary transition-colors font-medium ${
+                  isActive(link.to) ? "text-primary" : ""
+                }`}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
 
           {/* Logo */}
           <div className="flex-1 md:flex-none flex justify-center md:justify-end">
-            <button
-              onClick={() => scrollToSection("#inicio")}
+            <Link
+              to="/"
               className="text-2xl md:text-3xl font-bold text-primary"
             >
               moers
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,13 +80,15 @@ const Navigation = () => {
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-nav-foreground hover:text-primary transition-colors font-medium py-2 text-left"
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`text-nav-foreground hover:text-primary transition-colors font-medium py-2 text-left ${
+                    isActive(link.to) ? "text-primary" : ""
+                  }`}
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>

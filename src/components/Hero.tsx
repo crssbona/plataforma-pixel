@@ -1,13 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const scrollToPlans = () => {
-    const element = document.querySelector("#planos");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <section id="inicio" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
@@ -25,26 +20,25 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="group text-lg px-8 py-6 gradient-primary shadow-lg hover:shadow-xl transition-all"
-              onClick={scrollToPlans}
-            >
-              Ver Planos
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-            </Button>
+            <Link to="/planos">
+              <Button 
+                size="lg" 
+                className="group text-lg px-8 py-6 gradient-primary shadow-lg hover:shadow-xl transition-all"
+              >
+                Ver Planos
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+              </Button>
+            </Link>
             
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-lg px-8 py-6 border-2 hover:border-primary hover:bg-primary/5"
-              onClick={() => {
-                const element = document.querySelector("#contato");
-                if (element) element.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Fale Conosco
-            </Button>
+            <Link to="/contato">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="text-lg px-8 py-6 border-2 hover:border-primary hover:bg-primary/5"
+              >
+                Fale Conosco
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
