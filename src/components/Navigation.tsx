@@ -33,8 +33,10 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-nav shadow-md" : "bg-nav/95"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-lg ${
+        isScrolled 
+          ? "bg-nav/90 shadow-lg shadow-primary/5" 
+          : "bg-nav/80"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -45,11 +47,14 @@ const Navigation = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`text-nav-foreground hover:text-primary transition-colors font-medium ${
+                className={`relative text-nav-foreground hover:text-primary transition-all duration-300 font-medium group ${
                   isActive(link.to) ? "text-primary" : ""
                 }`}
               >
-                {link.label}
+                <span className="relative z-10">{link.label}</span>
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 ${
+                  isActive(link.to) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`} />
               </Link>
             ))}
           </div>
@@ -58,7 +63,7 @@ const Navigation = () => {
           <div className="flex-1 md:flex-none flex justify-center md:justify-end">
             <Link
               to="/"
-              className="text-2xl md:text-3xl font-bold text-primary"
+              className="text-2xl md:text-3xl font-bold text-primary hover:scale-110 transition-transform duration-300"
             >
               moers
             </Link>
